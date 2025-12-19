@@ -1,0 +1,8 @@
+vid2vtf.spec
+/.venv
+/build
+/dist
+/materials
+/sound
+test2.py
+view.vmt

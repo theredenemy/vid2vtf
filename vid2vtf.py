@@ -1,4 +1,6 @@
 import srctools.vtf as vtf
+from srctools.vmt import Material
+from srctools.keyvalues import Keyvalues
 import av
 import pathlib
 import os
@@ -29,8 +31,28 @@ def video_to_vtf(video, fps=3, width=256, height=128):
     os.mkdir(f"{maindir}\\sound")
     if os.path.isfile(f"{maindir}\\materials\\{name}.vtf"):
         os.remove(f"{maindir}\\materials\\{name}.vtf")
+    if os.path.isfile(f"{maindir}\\materials\\{name}.vmt"):
+        os.remove(f"{maindir}\\materials\\{name}.vmt")
     if os.path.isfile(f"{maindir}\\sound\\{name}.wav"):
         os.remove(f"{maindir}\\sound\\{name}.wav")
+
+    vmt_proxy_data = Keyvalues('AnimatedTexture', [
+        Keyvalues("animatedTextureVar", "$basetexture"),
+        Keyvalues("animatedTextureFrameNumVar", "$frame"),
+        Keyvalues("animatedTextureFrameRate", str(fps))
+
+    ]) 
+        
+
+    mat = Material(
+        shader="LightmappedGeneric",
+        params={
+            "$basetexture": name
+        },
+        proxies=[vmt_proxy_data]
+    )
+    with open(f"{maindir}\\materials\\{name}.vmt", 'w', encoding='utf-8') as f:
+        mat.export(f)
     for frame in audio_container.decode(audio_stream):
 
         for packet in output_audio_stream.encode(frame):

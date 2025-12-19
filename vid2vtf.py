@@ -72,12 +72,15 @@ def video_to_vtf(video, fps=3, width=256, height=128):
         
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--video")
-    parser.add_argument("--fps")
+    if len(sys.argv) > 1:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--video")
+        parser.add_argument("--fps", default=3)
+        parser.add_argument("--width", default=256)
+        parser.add_argument("--height", default=128)
 
-    args = parser.parse_args()
+        args = parser.parse_args()
     
-    video_to_vtf(args.video, fps=int(args.fps))       
+        video_to_vtf(args.video, fps=int(args.fps), width=int(args.width), height=int(args.height))       
 
     

@@ -12,6 +12,8 @@ def main():
         args = parser.parse_args()
     
         video_to_vtf(args.video, fps=int(args.fps), width=int(args.width), height=int(args.height))
+    else:
+        print("-- Use -h")
 
 if __name__ == '__main__':
     main()   

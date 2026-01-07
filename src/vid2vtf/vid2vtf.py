@@ -18,7 +18,6 @@ def video_to_vtf(video, fps=3, width=256, height=128):
         os.remove(fileeditname)
     #os.system(f"ffmpeg -i {video} -r {fps}/1 -vf scale={width}:{height} -async 1 {fileeditname} -y")
     #os.system(f'ffmpeg -i {video} -ar 11025 {name}.wav -y')
-    container = av.open(video)
     audio_container = av.open(video)
     audio_stream = audio_container.streams.audio[0]
     output_wav = av.open(f"{maindir}\\sound\\{name}.wav", mode='w')
@@ -36,6 +35,15 @@ def video_to_vtf(video, fps=3, width=256, height=128):
     if os.path.isfile(f"{maindir}\\sound\\{name}.wav"):
         os.remove(f"{maindir}\\sound\\{name}.wav")
 
+    for frame in audio_container.decode(audio_stream):
+
+        for packet in output_audio_stream.encode(frame):
+            output_wav.mux(packet)
+    
+    for packet in output_audio_stream.encode(None):
+        output_wav.mux(packet)
+    
+    audio_container.close()
     vmt_proxy_data = Keyvalues('AnimatedTexture', [
         Keyvalues("animatedTextureVar", "$basetexture"),
         Keyvalues("animatedTextureFrameNumVar", "$frame"),
@@ -53,17 +61,9 @@ def video_to_vtf(video, fps=3, width=256, height=128):
     )
     with open(f"{maindir}\\materials\\{name}.vmt", 'w', encoding='utf-8') as f:
         mat.export(f)
-    for frame in audio_container.decode(audio_stream):
-
-        for packet in output_audio_stream.encode(frame):
-            output_wav.mux(packet)
-    
-    for packet in output_audio_stream.encode(None):
-        output_wav.mux(packet)
-    
-    audio_container.close()
     print("wait")
     time.sleep(3)
+    container = av.open(video)
     stream = container.streams.video[0]
     original_fps = float(stream.average_rate)
 
@@ -86,23 +86,6 @@ def video_to_vtf(video, fps=3, width=256, height=128):
 
     with open(f"{maindir}\\materials\\{name}.vtf", 'wb') as f:
         texture.save(f)
-    
+    container.close()
     return True
-           
-
-
-        
-if __name__ == '__main__':
-    import argparse
-    if len(sys.argv) > 1:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--video")
-        parser.add_argument("--fps", default=3)
-        parser.add_argument("--width", default=256)
-        parser.add_argument("--height", default=128)
-
-        args = parser.parse_args()
-    
-        video_to_vtf(args.video, fps=int(args.fps), width=int(args.width), height=int(args.height))       
-
     

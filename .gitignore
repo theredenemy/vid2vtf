@@ -1,8 +1,11 @@
 vid2vtf.spec
 /.venv
+/__pycache__
 /build
 /dist
 /materials
 /sound
+/src/vid2vtf.egg-info
+/src/vid2vtf/__pycache__
 test2.py
 view.vmt

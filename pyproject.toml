@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vid2vtf"
+dynamic = ["dependencies", "version"]
+authors = [{name = "theredenemy"}]
+requires-python = ">= 3.8"
+
+[project.urls]
+Repository = "https://github.com/theredenemy/vid2vtf.git"
+Issues = "https://github.com/theredenemy/vid2vtf/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.scripts]
+vid2vtf-cli = "vid2vtf.cli:main"

@@ -78,15 +78,17 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_dir=os.getcwd()):
     texture = vtf.VTF(width=width, height=height, frames=len(frames), fmt=vtf.ImageFormats.DXT1, version=(7, 2))
 
     for i, data in enumerate(frames):
-        print(i, end='\r')
+        print(f"{i}/{len(frames)}", end='\r')
         vtf_frame = texture.get(frame=i)
         vtf_frame.copy_from(data, format=vtf.ImageFormats.RGB888)
     print("\n")
+    print("Computing Mipmaps...")
     texture.compute_mipmaps()
-
+    print("Saving VTF...")
     with open(f"{maindir}\\materials\\{name}.vtf", 'wb') as f:
         texture.save(f)
     container.close()
+    print("Done")
     return True
 
 

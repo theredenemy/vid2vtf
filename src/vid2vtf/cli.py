@@ -2,7 +2,7 @@ import argparse
 import sys
 import os
 from vid2vtf.vid2vtf import video_to_vtf
-version = "1.0.3"
+version = "1.0.4"
 def main():
     if len(sys.argv) > 1:
         parser = argparse.ArgumentParser()

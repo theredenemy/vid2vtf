@@ -8,14 +8,14 @@ import shutil
 import time
 import sys
 from PIL import Image
-def video_to_vtf(video, fps=3, width=256, height=128):
+def video_to_vtf(video, fps=3, width=256, height=128, output_dir=os.getcwd()):
     ext = pathlib.Path(video).suffix
     name = pathlib.Path(video).stem
-    maindir = os.getcwd()
+    maindir = output_dir
     size = [width, height]
-    fileeditname = f"{name}_256128{ext}"
-    if os.path.isfile(fileeditname):
-        os.remove(fileeditname)
+    #fileeditname = f"{name}_mod{ext}"
+    #if os.path.isfile(fileeditname):
+        #os.remove(fileeditname)
     #os.system(f"ffmpeg -i {video} -r {fps}/1 -vf scale={width}:{height} -async 1 {fileeditname} -y")
     #os.system(f'ffmpeg -i {video} -ar 11025 {name}.wav -y')
     audio_container = av.open(video)
@@ -88,4 +88,6 @@ def video_to_vtf(video, fps=3, width=256, height=128):
         texture.save(f)
     container.close()
     return True
+
+
     

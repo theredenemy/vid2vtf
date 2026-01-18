@@ -73,17 +73,17 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
     container = av.open(video)
     stream = container.streams.video[0]
     original_fps = float(stream.average_rate)
-
+    total_of_frames = container.streams.video[0].frames
     interval = max(1, round(original_fps / fps))
     frames = []
 
-    for i, frame in enumerate(tqdm(container.decode(stream))):
+    for i, frame in enumerate(tqdm(container.decode(stream), total=total_of_frames)):
         if i % interval == 0:
             img = frame.to_image().resize(size).convert("RGB")
             frames.append(img.tobytes())
     #print(len(frames))
     texture = vtf.VTF(width=width, height=height, frames=len(frames), fmt=vtf.ImageFormats.DXT1, version=(7, 2))
-    for i, data in enumerate(tqdm(frames)):
+    for i, data in enumerate(tqdm(frames, total=len(frames))):
         #print(f"{i}/{len(frames)}", end='\r')
         vtf_frame = texture.get(frame=i)
         vtf_frame.copy_from(data, format=vtf.ImageFormats.RGB888)

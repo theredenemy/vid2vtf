@@ -42,7 +42,7 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
     if os.path.isfile(os.path.join(maindir, "sound", f"{name}.wav")):
         os.remove(f"{maindir}\\sound\\{name}.wav")
 
-    for frame in audio_container.decode(audio_stream):
+    for frame in tqdm(audio_container.decode(audio_stream)):
 
         for packet in output_audio_stream.encode(frame):
             output_wav.mux(packet)

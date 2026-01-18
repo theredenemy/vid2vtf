@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools >= 77.0.3"]
+requires = ["setuptools >= 77.0.3", "setuptools-scm >= 9.2.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "vid2vtf"
 description = "Convert Videos into Animated VTF's (Valve Texture Format)"
-version = "1.0.5"
+# version = "1.0.6"
 readme = "README.md"
-dynamic = ["dependencies"]
+dynamic = ["dependencies", "version"]
 authors = [{name = "theredenemy"}]
 requires-python = ">= 3.8"
 
@@ -17,6 +17,8 @@ Issues = "https://github.com/theredenemy/vid2vtf/issues"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools_scm]
 
 [project.scripts]
 vid2vtf-cli = "vid2vtf.cli:main"

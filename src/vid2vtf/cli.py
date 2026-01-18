@@ -1,8 +1,12 @@
 import argparse
 import sys
 import os
-from vid2vtf.vid2vtf import video_to_vtf
-version = "1.0.5"
+from importlib.metadata import version
+try:
+    __version__ = version("vid2vtf")
+except Exception:
+    __version__ = "ORD_CRY"
+from vid2vtf import video_to_vtf
 def main():
     if len(sys.argv) > 1:
         parser = argparse.ArgumentParser()
@@ -18,7 +22,7 @@ def main():
     
         video_to_vtf(args.video, fps=int(args.fps), width=int(args.width), height=int(args.height), output_filename=args.output_filename, output_dir=args.output_dir)
     else:
-        print(f"vid2vtf : {version}. Please Use -h for help [vid2vtf -h]")
+        print(f"vid2vtf : {__version__}. Please Use -h for help [vid2vtf -h]")
 
 if __name__ == '__main__':
     main()   

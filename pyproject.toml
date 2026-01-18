@@ -7,7 +7,7 @@ name = "vid2vtf"
 description = "Convert Videos into Animated VTF's (Valve Texture Format)"
 version = "1.0.6"
 readme = "README.md"
-dynamic = ["dependencies", "version"]
+dynamic = ["dependencies"]
 authors = [{name = "theredenemy"}]
 requires-python = ">= 3.8"
 

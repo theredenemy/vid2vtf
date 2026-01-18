@@ -24,10 +24,6 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
         #os.remove(fileeditname)
     #os.system(f"ffmpeg -i {video} -r {fps}/1 -vf scale={width}:{height} -async 1 {fileeditname} -y")
     #os.system(f'ffmpeg -i {video} -ar 11025 {name}.wav -y')
-    audio_container = av.open(video)
-    audio_stream = audio_container.streams.audio[0]
-    output_wav = av.open(f"{maindir}\\sound\\{name}.wav", mode='w')
-    output_audio_stream = output_wav.add_stream('pcm_s16le', rate=11025)
     # NOTE: Replace Paths os.path.join for Linux or Unix compatibility
     if os.path.isdir(os.path.join(maindir, "materials")):
         shutil.rmtree(os.path.join(maindir, "materials"))
@@ -41,6 +37,12 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
         os.remove(os.path.join(maindir, "materials", f"{name}.vmt"))
     if os.path.isfile(os.path.join(maindir, "sound", f"{name}.wav")):
         os.remove(f"{maindir}\\sound\\{name}.wav")
+    
+    audio_container = av.open(video)
+    audio_stream = audio_container.streams.audio[0]
+    output_wav = av.open(os.path.join(maindir, "sound", f"{name}.wav"), mode='w')
+    output_audio_stream = output_wav.add_stream('pcm_s16le', rate=11025)
+    
 
     for frame in tqdm(audio_container.decode(audio_stream)):
 

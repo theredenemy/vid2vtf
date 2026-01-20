@@ -36,7 +36,7 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
     if os.path.isfile(os.path.join(maindir, "materials", f"{name}.vmt")):
         os.remove(os.path.join(maindir, "materials", f"{name}.vmt"))
     if os.path.isfile(os.path.join(maindir, "sound", f"{name}.wav")):
-        os.remove(f"{maindir}\\sound\\{name}.wav")
+        os.remove(os.path.join(maindir, "sound", f"{name}.wav"))
     
     audio_container = av.open(video)
     audio_stream = audio_container.streams.audio[0]

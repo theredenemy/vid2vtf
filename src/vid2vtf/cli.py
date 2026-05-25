@@ -16,11 +16,11 @@ def main():
         parser.add_argument("--height", default=128)
         parser.add_argument("--output_filename", default=None)
         parser.add_argument("--output_dir", default=os.getcwd())
+        parser.add_argument("--material_modify_control", default=False)
 
 
         args = parser.parse_args()
-    
-        video_to_vtf(args.video, fps=int(args.fps), width=int(args.width), height=int(args.height), output_filename=args.output_filename, output_dir=args.output_dir)
+        video_to_vtf(args.video, fps=int(args.fps), width=int(args.width), height=int(args.height), output_filename=args.output_filename, output_dir=args.output_dir, material_modify_control=bool(args.material_modify_control))
     else:
         print(f"vid2vtf : {__version__}. Please Use -h for help [vid2vtf -h]")
 

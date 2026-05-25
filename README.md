@@ -7,4 +7,5 @@ Make Sure FFMPEG is Installed.
   --height HEIGHT
   --output_filename OUTPUT_FILENAME
   --output_dir OUTPUT_DIR
+  --material_modify_control MATERIAL_MODIFY_CONTROL
 ```

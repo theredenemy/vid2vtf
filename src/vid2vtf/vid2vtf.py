@@ -74,7 +74,7 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
             )
         
         with open(os.path.join(maindir, "materials", "video", f"{name}.vmt"), 'w', encoding='utf-8') as f:
-            mat.export(f)
+            mat.export(f, quote=True)
     else:
         vmt_proxy_data = Keyvalues('AnimatedTexture', [
             Keyvalues("animatedTextureVar", "$basetexture"),

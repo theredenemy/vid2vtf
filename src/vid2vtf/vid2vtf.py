@@ -12,7 +12,7 @@ from PIL import Image
 try:
     from vid2vtf.patch_export import patch_export
 except ModuleNotFoundError:
-    from vid2vtf.patch_export import patch_export
+    from patch_export import patch_export
 
 Material.export = patch_export
 

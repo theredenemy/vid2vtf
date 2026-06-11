@@ -62,6 +62,8 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
         output_wav.mux(packet)
     
     audio_container.close()
+    # forgot to close this
+    output_wav.close()
     if material_modify_control:
         vmt_proxy_data = Keyvalues('MaterialModifyAnimated', [
             Keyvalues("animatedTextureVar", "$basetexture"),

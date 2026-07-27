@@ -23,6 +23,8 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
         name = pathlib.Path(output_filename).stem
     else:
         name = pathlib.Path(video).stem
+    if not os.path.isdir(output_dir):
+        os.makedirs(output_dir)
     maindir = output_dir
     size = [width, height]
     # NOTE: Replace Paths os.path.join for Linux or Unix compatibility

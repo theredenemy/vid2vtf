@@ -9,3 +9,4 @@ vid2vtf.spec
 /src/vid2vtf/__pycache__
 test2.py
 view.vmt
+uninstall_pkg.txt

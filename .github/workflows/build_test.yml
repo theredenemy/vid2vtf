@@ -26,9 +26,6 @@ jobs:
         with:
           python-version: "3.x"
       
-      - name: Run pytest
-        uses: pavelzw/pytest-action@v2.2.0
-
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.

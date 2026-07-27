@@ -20,9 +20,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install pytest pytest-md pytest-emoji
+        run: | 
+            pip install pytest pytest-md pytest-emoji
+      - name: Build package
+        run: |
+            python -m pip -v install .
       - uses: pavelzw/pytest-action@v2
         with:
           emoji: false
-          verbose: false
+          verbose: true
           job-summary: true

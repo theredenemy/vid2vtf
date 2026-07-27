@@ -9,10 +9,9 @@ import time
 from tqdm import tqdm
 import sys
 from PIL import Image
-try:
-    from vid2vtf.patch_export import patch_export
-except ModuleNotFoundError:
-    from patch_export import patch_export
+
+from vid2vtf.patch_export import patch_export
+
 
 Material.export = patch_export
 

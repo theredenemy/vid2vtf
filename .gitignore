@@ -10,3 +10,5 @@ vid2vtf.spec
 test2.py
 view.vmt
 uninstall_pkg.txt
+__pycache__
+

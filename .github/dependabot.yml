@@ -15,5 +15,4 @@ updates:
       interval: "daily"
   - package-ecosystem: "pip"
     directory: "/"
-    patterns: ["nginx", "redis"]
     multi-ecosystem-group: "main"

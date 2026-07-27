@@ -3,6 +3,7 @@ vid2vtf.spec
 /__pycache__
 /build
 /dist
+*.egg-info
 /materials
 /sound
 /src/vid2vtf.egg-info

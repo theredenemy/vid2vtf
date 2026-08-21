@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "vid2vtf"
 description = "Convert Videos into Animated VTF's (Valve Texture Format)"
-version = "3.1.0"
+version = "3.1.1"
 readme = "README.md"
 dynamic = ["dependencies"]
 authors = [{name = "theredenemy"}]

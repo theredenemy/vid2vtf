@@ -77,7 +77,7 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
     frames = []
 
     for i, frame in enumerate(tqdm(container.decode(stream), total=total_of_frames)):
-        if i % interval == 0:
+        if i % interval == 0 or use_video_fps:
             img = frame.to_image().resize(size).convert("RGB")
             frames.append(img.tobytes())
     texture = vtf.VTF(width=width, height=height, frames=len(frames), fmt=vtf.ImageFormats.DXT1, version=(7, 2))

@@ -3,12 +3,13 @@ vid2vtf.spec
 /__pycache__
 /build
 /dist
+/test_vid2vtf
 *.egg-info
 /materials
 /sound
 /src/vid2vtf.egg-info
 /src/vid2vtf/__pycache__
-test2.py
+test*.py
 view.vmt
 uninstall_pkg.txt
 /.pytest_cache

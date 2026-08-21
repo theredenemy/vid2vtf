@@ -29,6 +29,16 @@ def test_material_modify_control(tmp_path, request):
         setup_temp_files(test_video, tmp_video)
     assert vid2vtf.video_to_vtf(tmp_video, output_dir=tmp_path, material_modify_control=True)
 
+def test_use_video_fps(tmp_path, request):
+    print(tmp_path)
+    print(os.path.dirname(request.path))
+    tests_dir = os.path.dirname(request.path)
+    test_video = os.path.join(tests_dir, video_name)
+    tmp_video = os.path.join(tmp_path, video_name)
+    if not os.path.isfile(tmp_video):
+        setup_temp_files(test_video, tmp_video)
+    assert vid2vtf.video_to_vtf(tmp_video, output_dir=tmp_path, use_video_fps=True)
+
 def test_fps_count(tmp_path, request):
     print(tmp_path)
     print(os.path.dirname(request.path))

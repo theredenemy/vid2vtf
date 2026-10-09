@@ -1,1 +1,2 @@
 prune tests
+recursive-include src/vid2vtf/placeholder_audio *

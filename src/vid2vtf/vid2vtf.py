@@ -6,7 +6,10 @@ import pathlib
 import os
 import shutil
 import time
+import io
+import base64
 from tqdm import tqdm
+from importlib import resources
 import sys
 from PIL import Image
 
@@ -50,7 +53,13 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
         os.remove(os.path.join(maindir, "sound", f"{name}.wav"))
     
     audio_container = av.open(video)
-    audio_stream = audio_container.streams.audio[0]
+    if audio_container.streams.audio:
+        audio_stream = audio_container.streams.audio[0]
+    else:
+        placeholder_audio = resources.files("vid2vtf.placeholder_audio").joinpath("placeholder_Track1.wav")
+        print(placeholder_audio)
+        audio_container = av.open(str(placeholder_audio))
+        audio_stream = audio_container.streams.audio[0]
     output_wav = av.open(os.path.join(maindir, "sound", f"{name}.wav"), mode='w')
     output_audio_stream = output_wav.add_stream('pcm_s16le', rate=11025)
     

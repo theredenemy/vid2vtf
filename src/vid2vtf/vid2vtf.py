@@ -56,7 +56,7 @@ def video_to_vtf(video, fps=3, width=256, height=128, output_filename=None, outp
     if audio_container.streams.audio:
         audio_stream = audio_container.streams.audio[0]
     else:
-        placeholder_audio = resources.files("vid2vtf.placeholder_audio").joinpath("placeholder_Track1.wav")
+        placeholder_audio = resources.files("vid2vtf.placeholder_audio").joinpath("placeholder2.wav")
         print(placeholder_audio)
         audio_container = av.open(str(placeholder_audio))
         audio_stream = audio_container.streams.audio[0]

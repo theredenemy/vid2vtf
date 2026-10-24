@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "vid2vtf"
 description = "Convert Videos into Animated VTF's (Valve Texture Format)"
-version = "3.2.1"
+version = "3.2.2"
 readme = "README.md"
 dynamic = ["dependencies"]
 authors = [{name = "theredenemy"}]
-requires-python = ">= 3.10"
+requires-python = ">= 3.11"
 
 [project.urls]
 Repository = "https://github.com/theredenemy/vid2vtf.git"
